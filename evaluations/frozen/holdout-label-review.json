@@ -1,0 +1,153 @@
+{
+  "review_type": "agent_semantic_audit_before_model_run",
+  "expert_validation": false,
+  "independent_human_review_status": "pending",
+  "labels_changed": false,
+  "scope": "仅核对给定主张与本地传入证据的语义关系，未验证WHO/CDC网页的医学事实或来源现行性",
+  "rows": [
+    {
+      "id": "H-S01",
+      "claim": "对18至64岁成年人，每周75至150分钟高强度有氧活动是所给建议中的一种选择。",
+      "provisional_label": "supported",
+      "review_action": "keep",
+      "evidence_origin": "knowledge_base",
+      "evidence": [
+        {
+          "document_id": "WHO001",
+          "source": "世界卫生组织 WHO",
+          "facts": [
+            "18至64岁成年人每周建议进行150至300分钟中等强度有氧活动，或者75至150分钟高强度有氧活动。"
+          ]
+        }
+      ],
+      "semantic_basis": "证据明确给出高强度有氧活动作为“或者”选项，人群和分钟范围一致。",
+      "possible_dispute": "“建议中的一种选择”只陈述选项，不声称其他选项被排除。"
+    },
+    {
+      "id": "H-S02",
+      "claim": "身体活动可以先从少量开始，再一步步增加。",
+      "provisional_label": "supported",
+      "review_action": "keep",
+      "evidence_origin": "knowledge_base",
+      "evidence": [
+        {
+          "document_id": "WHO001",
+          "source": "世界卫生组织 WHO",
+          "facts": [
+            "进行一些身体活动比完全不活动更好，可以从少量活动开始并逐步增加。"
+          ]
+        }
+      ],
+      "semantic_basis": "“从少量活动开始并逐步增加”与主张语义相同。",
+      "possible_dispute": "证据同时说活动比不活动好，主张未额外声称疗效。"
+    },
+    {
+      "id": "H-C01",
+      "claim": "对于18至60岁成年人，通常建议每晚睡眠少于7小时，而不是至少7小时。",
+      "provisional_label": "contradicted",
+      "review_action": "keep",
+      "evidence_origin": "knowledge_base",
+      "evidence": [
+        {
+          "document_id": "CDC001",
+          "source": "美国疾病控制与预防中心 CDC",
+          "facts": [
+            "18至60岁成年人通常建议每晚睡眠至少7小时。"
+          ]
+        }
+      ],
+      "semantic_basis": "同一年龄段的推荐口径下，“少于7小时，而不是至少7小时”明确否定原下界。",
+      "possible_dispute": "若把主张误读成实际睡眠时长而非推荐，两者关系会变；主张原文明确是推荐。"
+    },
+    {
+      "id": "H-C02",
+      "claim": "对健康睡眠来说，睡眠质量完全不重要，只需关注时长。",
+      "provisional_label": "contradicted",
+      "review_action": "keep",
+      "evidence_origin": "knowledge_base",
+      "evidence": [
+        {
+          "document_id": "CDC001",
+          "source": "美国疾病控制与预防中心 CDC",
+          "facts": [
+            "健康睡眠不仅需要足够的睡眠时长，也需要良好的睡眠质量。"
+          ]
+        }
+      ],
+      "semantic_basis": "证据将良好质量列为健康睡眠需要的条件；主张说质量完全不重要。",
+      "possible_dispute": "不涉及具体医疗结果，只比较文本中的条件。"
+    },
+    {
+      "id": "H-N01",
+      "claim": "睡前拉伸20分钟能让所有人的入睡时间减半。",
+      "provisional_label": "not_supported",
+      "review_action": "keep",
+      "evidence_origin": "knowledge_base",
+      "evidence": [
+        {
+          "document_id": "CDC001",
+          "source": "美国疾病控制与预防中心 CDC",
+          "facts": [
+            "健康睡眠不仅需要足够的睡眠时长，也需要良好的睡眠质量。"
+          ]
+        }
+      ],
+      "semantic_basis": "证据没有拉伸、20分钟、入睡时间减半或所有人。",
+      "possible_dispute": "这是给定证据不足，不判断现实中拉伸是否有效。"
+    },
+    {
+      "id": "H-N02",
+      "claim": "只要每周锻炼两天，就能保证每个人长寿。",
+      "provisional_label": "not_supported",
+      "review_action": "keep",
+      "evidence_origin": "knowledge_base",
+      "evidence": [
+        {
+          "document_id": "WHO001",
+          "source": "世界卫生组织 WHO",
+          "facts": [
+            "成年人每周还应安排至少2天涉及主要肌群的肌肉力量训练。"
+          ]
+        }
+      ],
+      "semantic_basis": "证据仅有针对主要肌群的至少2天力量训练建议，不能推出“每周锻炼两天保证每个人长寿”。",
+      "possible_dispute": "“锻炼两天”比原文训练类型更宽泛；长寿保证也完全缺证据，故保持not_supported。"
+    },
+    {
+      "id": "H-U01",
+      "claim": "这项计划最终选定每周3天力量训练。",
+      "provisional_label": "uncertain",
+      "review_action": "keep",
+      "evidence_origin": "synthetic_ambiguous",
+      "evidence": [
+        {
+          "document_id": "H-SYN01",
+          "source": "synthetic_ambiguous",
+          "facts": [
+            "【合成语言夹具，非医学建议】训练计划草案甲写每周2天，草案乙写每周3天；最终采用哪份草案尚未记录。"
+          ]
+        }
+      ],
+      "semantic_basis": "合成夹具列出2天与3天两个待选草案，并明确最终决定未记录。",
+      "possible_dispute": "uncertain与not_supported存在标注边界争议；此处按证据自身明确未决版本判uncertain，需独立人工复核。"
+    },
+    {
+      "id": "H-U02",
+      "claim": "报告里的20%是全体参与者的比例。",
+      "provisional_label": "uncertain",
+      "review_action": "keep",
+      "evidence_origin": "synthetic_ambiguous",
+      "evidence": [
+        {
+          "document_id": "H-SYN02",
+          "source": "synthetic_ambiguous",
+          "facts": [
+            "【合成语言夹具，非医学建议】报告写“20%的参与者完成记录”；编者注指出分母可能是全体参与者，也可能仅是甲组，原表未说明。"
+          ]
+        }
+      ],
+      "semantic_basis": "合成夹具明确说20%的分母可能是全体或甲组，原表未说明。",
+      "possible_dispute": "日常阅读可能默认“参与者”指全体；编者注显式消除该默认的确定性。uncertain边界仍需人工复核。"
+    }
+  ]
+}

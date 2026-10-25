@@ -1,0 +1,36 @@
+{
+  "freeze_id": "holdout-v1-v2-2026-10-24",
+  "created_at_utc": "2026-10-24T08:16:00.134791+00:00",
+  "label_status": "pending_independent_human_review",
+  "agent_semantic_review_sha256": "feac1cbf3aee4b3f968c23a9eb1ea70fd2ae35b434df44594d8e53adfe3724a9",
+  "source_sha256": {
+    "app/claim_verifier.py": "0b013ea549f365f999c157a0121e3d1ebbad011c2d406d9a780ce6a05ec9cfa7",
+    "evaluations/v2_strategy.py": "a05ed1aa63fa834ff3faa37731438d62834d0c462dd46b4ea71256198f314545",
+    "evaluations/claims.holdout.v2.json": "5fd59c71c6fbf7c2607baca211667e9be6e32d621366ef3d05bbffa212a6dcea",
+    "data/health_knowledge.json": "34c3daf2a417d437559c1653e638fffe361304bc5cd6a76816fc13b9637065c0"
+  },
+  "prompt_fingerprints": {
+    "v1_source_sha256": "0b013ea549f365f999c157a0121e3d1ebbad011c2d406d9a780ce6a05ec9cfa7",
+    "v2_system_prompt_sha256": "94ad6fbee50ff1c89c4653083a23663277ce9d74c6db412e5183ab4c318c6a3c"
+  },
+  "model": {
+    "name": "qwen3:4b",
+    "ollama_list_id_prefix": "359d7dd4bcda",
+    "manifest_sha256": "31d9857b5705086d352d4d6db04e86c5d0f6a2b5d59a4dc7ce5cdb271ccf9141",
+    "base_blob_sha256": "3e4cb14174460404e7a233e531675303b2fbf7749c02f91864fe311ab6344e4f",
+    "options": {
+      "temperature": 0
+    },
+    "think": false,
+    "sdk_version": "0.6.3"
+  },
+  "sample_count": 8,
+  "labels": {
+    "supported": 2,
+    "not_supported": 2,
+    "contradicted": 2,
+    "uncertain": 2
+  },
+  "run_policy": "One V1 and one V2 real-model invocation per case; no prompt or label edits after seeing results.",
+  "freeze_correction_note": "Before any holdout model calls, replaced nondeterministic Python code-object fingerprint with stable source/text hashes; source files and labels did not change."
+}

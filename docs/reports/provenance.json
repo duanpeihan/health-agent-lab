@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "kind": "public_projection_not_new_experiment",
+  "source_report_id": "reflection-final-ab-20261025T050734Z-1f550f32",
+  "source_report_sha256": "0ef6d0a226790fa76bc155fa1bc3df42adb373c4b42af6a7b2f61ea5a09f2c1b",
+  "source_comparison_sha256": "15a3a1d43bcddfbb3049c7a07c8c5e41d12b9c195cf6ad5382fb07f663793ed5",
+  "published_files": {
+    "final_reflection_ab_cases.csv": "15a3a1d43bcddfbb3049c7a07c8c5e41d12b9c195cf6ad5382fb07f663793ed5",
+    "final_reflection_ab_config.json": "1a79c40d667338fff05e61b60179bc32aaa288b6a825a757e186ba0c71152464",
+    "final_reflection_ab.md": "94fe0046b0bfa66c8ae85a2c528af416e5218d092fdbfa54eee9e27527cbcc6c"
+  },
+  "original_records_modified": false,
+  "new_model_calls": 0,
+  "human_review_completed": false
+}

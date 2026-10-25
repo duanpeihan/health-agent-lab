@@ -29,10 +29,23 @@ DRAFT = (
     "生活中可以记录自己的作息习惯，结合实际感受了解休息情况，"
     "并在需要时咨询专业人员。以上内容依据所提供的测试资料整理。[1]"
 )
+EXPECTED_CLAUSES = {
+    "关于睡眠，建议保持规律作息，并关注安静舒适的休息环境",
+    "生活中可以记录自己的作息习惯，结合实际感受了解休息情况，并在需要时咨询专业人员",
+}
+
+
+def verified_clauses(mock):
+    return [call.kwargs["messages"][-1]["content"].split("待核查主张：", 1)[1]
+            for call in mock.call_args_list]
 
 
 def model_response(content):
-    return SimpleNamespace(message=SimpleNamespace(content=content))
+    return SimpleNamespace(message=SimpleNamespace(content=content), done=True, done_reason="stop")
+
+
+def writer_response(content):
+    return model_response(json.dumps({"article": content}, ensure_ascii=False))
 
 
 @pytest.fixture
@@ -40,7 +53,7 @@ def mock_models(monkeypatch):
     monkeypatch.setattr(agent, "knowledge_base", [DOCUMENT])
     monkeypatch.delenv("INJECT_BAD_FACT", raising=False)
     monkeypatch.delenv("INJECT_FALSE_CLAIM", raising=False)
-    writer = Mock(return_value=model_response(DRAFT))
+    writer = Mock(return_value=writer_response(DRAFT))
     verifier = Mock(return_value=model_response(json.dumps({
         "verdict": "supported",
         "reason": "离线流程测试的固定分类",
@@ -109,18 +122,19 @@ def test_graph_success_uses_real_verifier_with_mock_model(mock_models):
     assert "不代替专业医疗建议" in result["answer"]
     assert result["duration_seconds"] >= 0
     writer.assert_called_once()
-    verifier.assert_called_once()
+    # Every substantive clause is covered, including those without old keywords.
+    assert set(verified_clauses(verifier)) == EXPECTED_CLAUSES
 
 
 def test_graph_revises_after_checker_feedback(mock_models):
     writer, verifier = mock_models
-    writer.side_effect = [model_response("内容太短。[1]"), model_response(DRAFT)]
+    writer.side_effect = [writer_response("内容太短。[1]"), writer_response(DRAFT)]
     result = agent.run_health_agent("请写一篇睡眠科普文章")
     assert result["status"] == "completed"
     assert result["revision_count"] == 1
     assert writer.call_count == 2
-    assert "文章内容过短" in writer.call_args.kwargs["messages"][1]["content"]
-    verifier.assert_called_once()
+    assert "占位文字或未完成陈述" in writer.call_args.kwargs["messages"][1]["content"]
+    assert set(verified_clauses(verifier)) == EXPECTED_CLAUSES | {"内容太短"}
 
 
 def test_graph_stops_after_revision_limit(mock_models):
@@ -131,9 +145,10 @@ def test_graph_stops_after_revision_limit(mock_models):
     result = agent.run_health_agent("请写一篇睡眠科普文章")
     assert result["status"] == "evaluation_failed"
     assert result["revision_count"] == agent.MAX_REVISIONS
-    assert writer.call_count == verifier.call_count == agent.MAX_REVISIONS + 1
+    assert writer.call_count == agent.MAX_REVISIONS + 1 == 2
+    assert set(verified_clauses(verifier)) == EXPECTED_CLAUSES
+    assert verifier.call_count == len(EXPECTED_CLAUSES) * 2
     assert "不输出未经核查的科普内容" in result["answer"]
-    assert "not_supported" in result["answer"]
     assert DRAFT not in result["answer"]
 
 

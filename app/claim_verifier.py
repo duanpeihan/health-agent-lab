@@ -1,6 +1,6 @@
 import json
 
-from ollama import chat
+from .writer import default_chat as chat
 
 from .knowledge import load_knowledge_base
 
@@ -124,6 +124,13 @@ def verify_claim(claim, documents):
         think=False,
         options={"temperature": 0}
     )
+
+    # A syntactically valid JSON prefix is not evidence of a finished response.
+    # Writer and Checker share the bounded request client; historical prompts
+    # and normal four-class outputs remain unchanged.
+    if (getattr(response, "done", None) is not True
+            or getattr(response, "done_reason", None) != "stop"):
+        raise ValueError("Verifier response was unfinished or truncated")
 
     result = json.loads(
         response.message.content or "{}"

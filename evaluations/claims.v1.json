@@ -1,0 +1,639 @@
+{
+  "schema_version": "1.0",
+  "dataset_id": "claim-verifier-v1",
+  "knowledge_sha256": "34c3daf2a417d437559c1653e638fffe361304bc5cd6a76816fc13b9637065c0",
+  "label_status": "pending_human_review",
+  "annotation_note": "首批24条是由助手拟定、尚待独立人工复核的候选标签；不是医学专家金标准，也不证明知识库内容的医学正确性或实时有效性。每例只按其显式提供的证据判断，不能使用知识库其他事实或外部医学常识。knowledge_sha256固定本次知识库原始字节版本。前三例为真实模型smoke，第四类uncertain仅使用显式隔离的受控合成歧义夹具。N006为空证据确定性分支，不能冒称真实模型调用。",
+  "annotation_policy": {
+    "supported": "给定证据直接支持主张，包括保留人群、量词、数字、建议强度和逻辑关系的语义改写。expected_evidence_quotes为可以接受的逐字引用。",
+    "not_supported": "给定证据未涉及主张或不足以推出主张，例如越出人群、把建议强化为必须、编造疗效；不能仅因证据不足而标成contradicted。空证据也归此类。",
+    "contradicted": "给定证据明确否定主张，双方在同一对象、条件与范围下直接逻辑冲突。expected_evidence_quotes为可以接受的逐字反证。",
+    "uncertain": "仅当提供的相关证据自身存在明确且尚未消除的指代、范围、版本或性质歧义，使主张是否被支持无法可靠确定。初版用synthetic_ambiguous受控合成夹具专门覆盖，不把普通缺证据归入此类。",
+    "synthetic_ambiguous_boundary": "SYN-U系列只用于受控语言歧义压力测试，source与facts都标明受控合成；不可冒充WHO/CDC原文，不可当作新医学事实，不应与真实知识库子集的成绩不加区分地解释。uncertain与not_supported边界应优先由独立复核者确认。",
+    "evidence_refs": "fact_indices为对应document_id的facts中1-based索引；evidence_refs仅适用于knowledge_base，从固定哈希的data/health_knowledge.json读取。synthetic_ambiguous的evidence_refs必须为空，只从本例evidence_fixture读取；empty_evidence必须提供空文档列表。"
+  },
+  "cases": [
+    {
+      "id": "S001",
+      "claim": "18至60岁的成年人，通常每晚至少睡7小时是建议的睡眠时长。",
+      "expected_label": "supported",
+      "label_status": "pending_human_review",
+      "rationale": "保留了18至60岁、通常建议和至少7小时的范围与限定，是CDC001第1条的语义改写。",
+      "tags": [
+        "smoke",
+        "sleep",
+        "semantic_paraphrase",
+        "age_scope",
+        "at_least"
+      ],
+      "evidence_origin": "knowledge_base",
+      "evidence_refs": [
+        {
+          "document_id": "CDC001",
+          "fact_indices": [
+            1
+          ]
+        }
+      ],
+      "expected_evidence_quotes": [
+        "18至60岁成年人通常建议每晚睡眠至少7小时。"
+      ],
+      "reviewer": null
+    },
+    {
+      "id": "C001",
+      "claim": "只要睡眠时间足够就一定是健康睡眠，睡眠质量好坏无关紧要。",
+      "expected_label": "contradicted",
+      "label_status": "pending_human_review",
+      "rationale": "证据明确说健康睡眠还需要良好的睡眠质量；主张否定质量条件，与证据直接矛盾。",
+      "tags": [
+        "smoke",
+        "sleep",
+        "counterfactual",
+        "necessary_condition",
+        "quantifier"
+      ],
+      "evidence_origin": "knowledge_base",
+      "evidence_refs": [
+        {
+          "document_id": "CDC001",
+          "fact_indices": [
+            3
+          ]
+        }
+      ],
+      "expected_evidence_quotes": [
+        "健康睡眠不仅需要足够的睡眠时长，也需要良好的睡眠质量。"
+      ],
+      "reviewer": null
+    },
+    {
+      "id": "N001",
+      "claim": "成年人每晚必须睡12小时。",
+      "expected_label": "not_supported",
+      "label_status": "pending_human_review",
+      "rationale": "证据只给18至60岁成年人通常至少7小时的建议，不能推出所有成年人必须12小时；至少7小时也未明确排除12小时，故不标为contradicted。此边界与现有Verifier提示词的示例一致。",
+      "tags": [
+        "smoke",
+        "sleep",
+        "fabricated_number",
+        "unsupported_strengthening"
+      ],
+      "evidence_origin": "knowledge_base",
+      "evidence_refs": [
+        {
+          "document_id": "CDC001",
+          "fact_indices": [
+            1
+          ]
+        }
+      ],
+      "expected_evidence_quotes": [],
+      "reviewer": null
+    },
+    {
+      "id": "S002",
+      "claim": "18至64岁成年人每周做150至300分钟中等强度有氧活动，或75至150分钟高强度有氧活动，属于这里给出的建议。",
+      "expected_label": "supported",
+      "label_status": "pending_human_review",
+      "rationale": "年龄、周频率、两种强度与时间区间及或关系均与WHO001第1条相同。",
+      "tags": [
+        "activity",
+        "semantic_paraphrase",
+        "numeric_range",
+        "alternative"
+      ],
+      "evidence_origin": "knowledge_base",
+      "evidence_refs": [
+        {
+          "document_id": "WHO001",
+          "fact_indices": [
+            1
+          ]
+        }
+      ],
+      "expected_evidence_quotes": [
+        "18至64岁成年人每周建议进行150至300分钟中等强度有氧活动，或者75至150分钟高强度有氧活动。"
+      ],
+      "reviewer": null
+    },
+    {
+      "id": "S003",
+      "claim": "成年人一周还应至少有两天进行针对主要肌群的力量训练。",
+      "expected_label": "supported",
+      "label_status": "pending_human_review",
+      "rationale": "将至少2天、涉及主要肌群的肌肉力量训练作同义改写，未改变建议强度。",
+      "tags": [
+        "activity",
+        "strength_training",
+        "semantic_paraphrase",
+        "at_least"
+      ],
+      "evidence_origin": "knowledge_base",
+      "evidence_refs": [
+        {
+          "document_id": "WHO001",
+          "fact_indices": [
+            2
+          ]
+        }
+      ],
+      "expected_evidence_quotes": [
+        "成年人每周还应安排至少2天涉及主要肌群的肌肉力量训练。"
+      ],
+      "reviewer": null
+    },
+    {
+      "id": "S004",
+      "claim": "和完全不进行身体活动相比，做一点身体活动更好；可以先少量开始，再逐渐增加。",
+      "expected_label": "supported",
+      "label_status": "pending_human_review",
+      "rationale": "主张的比较关系和循序增加过程均由WHO001第3条直接支持。",
+      "tags": [
+        "activity",
+        "semantic_paraphrase",
+        "gradual_increase",
+        "comparison"
+      ],
+      "evidence_origin": "knowledge_base",
+      "evidence_refs": [
+        {
+          "document_id": "WHO001",
+          "fact_indices": [
+            3
+          ]
+        }
+      ],
+      "expected_evidence_quotes": [
+        "进行一些身体活动比完全不活动更好，可以从少量活动开始并逐步增加。"
+      ],
+      "reviewer": null
+    },
+    {
+      "id": "S005",
+      "claim": "推荐的睡眠时长会因年龄人群不同而有所不同。",
+      "expected_label": "supported",
+      "label_status": "pending_human_review",
+      "rationale": "仅将不同年龄人群的推荐睡眠时长不同改写为因年龄而有所不同，没有新增具体年龄或时长。",
+      "tags": [
+        "sleep",
+        "semantic_paraphrase",
+        "age_scope"
+      ],
+      "evidence_origin": "knowledge_base",
+      "evidence_refs": [
+        {
+          "document_id": "CDC001",
+          "fact_indices": [
+            2
+          ]
+        }
+      ],
+      "expected_evidence_quotes": [
+        "不同年龄人群的推荐睡眠时长不同。"
+      ],
+      "reviewer": null
+    },
+    {
+      "id": "S006",
+      "claim": "健康睡眠既要有足够时长，也要有良好的质量。",
+      "expected_label": "supported",
+      "label_status": "pending_human_review",
+      "rationale": "既要也要与不仅需要也需要语义等价，两项条件均保留。",
+      "tags": [
+        "sleep",
+        "semantic_paraphrase",
+        "conjunction"
+      ],
+      "evidence_origin": "knowledge_base",
+      "evidence_refs": [
+        {
+          "document_id": "CDC001",
+          "fact_indices": [
+            3
+          ]
+        }
+      ],
+      "expected_evidence_quotes": [
+        "健康睡眠不仅需要足够的睡眠时长，也需要良好的睡眠质量。"
+      ],
+      "reviewer": null
+    },
+    {
+      "id": "C002",
+      "claim": "18至64岁成年人每周中等强度有氧活动的推荐量是15至30分钟，而不是150至300分钟。",
+      "expected_label": "contradicted",
+      "label_status": "pending_human_review",
+      "rationale": "主张明确否定证据给出的150至300分钟建议区间，并替换为15至30分钟，构成直接矛盾。",
+      "tags": [
+        "activity",
+        "fabricated_number",
+        "counterfactual",
+        "explicit_negation"
+      ],
+      "evidence_origin": "knowledge_base",
+      "evidence_refs": [
+        {
+          "document_id": "WHO001",
+          "fact_indices": [
+            1
+          ]
+        }
+      ],
+      "expected_evidence_quotes": [
+        "18至64岁成年人每周建议进行150至300分钟中等强度有氧活动，或者75至150分钟高强度有氧活动。"
+      ],
+      "reviewer": null
+    },
+    {
+      "id": "C003",
+      "claim": "成年人每周涉及主要肌群的肌肉力量训练应安排0天，而不应安排至少2天。",
+      "expected_label": "contradicted",
+      "label_status": "pending_human_review",
+      "rationale": "在同一训练类型与周频率上，证据建议至少2天，主张明确改为0天并否定至少2天，形成直接冲突。",
+      "tags": [
+        "activity",
+        "strength_training",
+        "counterfactual",
+        "explicit_negation",
+        "quantifier"
+      ],
+      "evidence_origin": "knowledge_base",
+      "evidence_refs": [
+        {
+          "document_id": "WHO001",
+          "fact_indices": [
+            2
+          ]
+        }
+      ],
+      "expected_evidence_quotes": [
+        "成年人每周还应安排至少2天涉及主要肌群的肌肉力量训练。"
+      ],
+      "reviewer": null
+    },
+    {
+      "id": "C004",
+      "claim": "少量身体活动与完全不活动相比没有任何好处，完全不活动也一样好。",
+      "expected_label": "contradicted",
+      "label_status": "pending_human_review",
+      "rationale": "证据明确比较为进行一些身体活动更好；主张否认这一比较关系。",
+      "tags": [
+        "activity",
+        "counterfactual",
+        "comparison",
+        "quantifier"
+      ],
+      "evidence_origin": "knowledge_base",
+      "evidence_refs": [
+        {
+          "document_id": "WHO001",
+          "fact_indices": [
+            3
+          ]
+        }
+      ],
+      "expected_evidence_quotes": [
+        "进行一些身体活动比完全不活动更好，可以从少量活动开始并逐步增加。"
+      ],
+      "reviewer": null
+    },
+    {
+      "id": "C005",
+      "claim": "对于18至60岁成年人，通常并不建议每晚至少睡7小时。",
+      "expected_label": "contradicted",
+      "label_status": "pending_human_review",
+      "rationale": "在相同人群、通常限定和每晚至少7小时的条件下，主张直接否定了证据中的建议。",
+      "tags": [
+        "sleep",
+        "counterfactual",
+        "explicit_negation",
+        "age_scope"
+      ],
+      "evidence_origin": "knowledge_base",
+      "evidence_refs": [
+        {
+          "document_id": "CDC001",
+          "fact_indices": [
+            1
+          ]
+        }
+      ],
+      "expected_evidence_quotes": [
+        "18至60岁成年人通常建议每晚睡眠至少7小时。"
+      ],
+      "reviewer": null
+    },
+    {
+      "id": "C006",
+      "claim": "所有年龄人群的推荐睡眠时长都完全相同。",
+      "expected_label": "contradicted",
+      "label_status": "pending_human_review",
+      "rationale": "所有人群都相同与证据所说不同年龄人群的推荐时长不同直接矛盾。",
+      "tags": [
+        "sleep",
+        "counterfactual",
+        "quantifier",
+        "age_scope"
+      ],
+      "evidence_origin": "knowledge_base",
+      "evidence_refs": [
+        {
+          "document_id": "CDC001",
+          "fact_indices": [
+            2
+          ]
+        }
+      ],
+      "expected_evidence_quotes": [
+        "不同年龄人群的推荐睡眠时长不同。"
+      ],
+      "reviewer": null
+    },
+    {
+      "id": "N002",
+      "claim": "睡前喝牛奶能够治愈失眠。",
+      "expected_label": "not_supported",
+      "label_status": "pending_human_review",
+      "rationale": "所给证据讨论睡眠的时长与质量，没有提到牛奶或失眠治愈；不能使用外部医学知识补全。",
+      "tags": [
+        "sleep",
+        "unsupported_treatment",
+        "absent_topic"
+      ],
+      "evidence_origin": "knowledge_base",
+      "evidence_refs": [
+        {
+          "document_id": "CDC001",
+          "fact_indices": [
+            3
+          ]
+        }
+      ],
+      "expected_evidence_quotes": [],
+      "reviewer": null
+    },
+    {
+      "id": "N003",
+      "claim": "所有成年人每天补钙都能保证睡眠质量提高50%。",
+      "expected_label": "not_supported",
+      "label_status": "pending_human_review",
+      "rationale": "证据只说健康睡眠需要良好质量，没有补钙、疗效比例或对所有成年人的保证；也未明确反驳该具体疗效。",
+      "tags": [
+        "sleep",
+        "calcium",
+        "unsupported_treatment",
+        "fabricated_number",
+        "quantifier"
+      ],
+      "evidence_origin": "knowledge_base",
+      "evidence_refs": [
+        {
+          "document_id": "CDC001",
+          "fact_indices": [
+            3
+          ]
+        }
+      ],
+      "expected_evidence_quotes": [],
+      "reviewer": null
+    },
+    {
+      "id": "N004",
+      "claim": "65岁以上成年人通常每晚建议至少睡7小时。",
+      "expected_label": "not_supported",
+      "label_status": "pending_human_review",
+      "rationale": "所给时长建议限定18至60岁，不能外推到65岁以上。该标签只评价当前给定证据是否支持，不评价主张在现实医学中的真伪。",
+      "tags": [
+        "sleep",
+        "age_scope",
+        "out_of_scope_population"
+      ],
+      "evidence_origin": "knowledge_base",
+      "evidence_refs": [
+        {
+          "document_id": "CDC001",
+          "fact_indices": [
+            1
+          ]
+        }
+      ],
+      "expected_evidence_quotes": [],
+      "reviewer": null
+    },
+    {
+      "id": "N005",
+      "claim": "每晚睡满7小时能在一周内让失眠治愈率达到90%。",
+      "expected_label": "not_supported",
+      "label_status": "pending_human_review",
+      "rationale": "建议时长与健康睡眠条件都不能推出一周内90%的失眠治愈率；证据未给任何此类治疗效果。",
+      "tags": [
+        "sleep",
+        "unsupported_treatment",
+        "fabricated_number",
+        "causal_overreach"
+      ],
+      "evidence_origin": "knowledge_base",
+      "evidence_refs": [
+        {
+          "document_id": "CDC001",
+          "fact_indices": [
+            1,
+            3
+          ]
+        }
+      ],
+      "expected_evidence_quotes": [],
+      "reviewer": null
+    },
+    {
+      "id": "N006",
+      "claim": "每天摄入800毫克钙可以治疗失眠。",
+      "expected_label": "not_supported",
+      "label_status": "pending_human_review",
+      "rationale": "本例有意不提供任何证据，期望验证现有无证据分支返回not_supported；这不是对该医疗主张的现实真伪判定。此例不属于前三条smoke，也不调用模型。",
+      "tags": [
+        "calcium",
+        "unsupported_treatment",
+        "empty_evidence",
+        "deterministic_shortcut"
+      ],
+      "evidence_origin": "empty_evidence",
+      "evidence_refs": [],
+      "expected_evidence_quotes": [],
+      "reviewer": null
+    },
+    {
+      "id": "U001",
+      "claim": "这份记录最终采用的最低推荐睡眠时长是7小时，未选择9小时这一稿。",
+      "expected_label": "uncertain",
+      "label_status": "pending_human_review",
+      "rationale": "同一记录明确保留最低7小时与最低9小时两个待定建议，最终版本未定，无法可靠确定主张选择的是哪一稿。标签针对最终稿选择，不把至少9小时蕴含至少7小时混作同一选择。夹具是助手拟定的受控合成歧义，不是知识库原文。",
+      "tags": [
+        "synthetic_ambiguous",
+        "sleep",
+        "unresolved_numeric_scope",
+        "uncertain_expression"
+      ],
+      "evidence_origin": "synthetic_ambiguous",
+      "evidence_refs": [],
+      "expected_evidence_quotes": [],
+      "reviewer": null,
+      "evidence_fixture": [
+        {
+          "id": "SYN-U001",
+          "topic": "受控歧义测试：睡眠建议待定",
+          "facts": [
+            "【synthetic_ambiguous：受控合成语言夹具，不是医学建议】该组成年人的最终睡眠建议仍待定：草稿A写“每晚至少7小时”，草稿B写“每晚至少9小时”；记录未说明最终采用哪份草稿。"
+          ],
+          "source": "synthetic_ambiguous",
+          "url": "",
+          "source_note": "助手拟定的受控合成语义歧义夹具；不属于健康知识库，不是医学事实或医学建议，尚待独立人工复核。"
+        }
+      ]
+    },
+    {
+      "id": "U002",
+      "claim": "这份活动计划最终采用每周150至300分钟这一档。",
+      "expected_label": "uncertain",
+      "label_status": "pending_human_review",
+      "rationale": "夹具明确列出两个尚未选择的活动区间，最终采用哪档不清；不能把一个备选当成已确认的最终计划。",
+      "tags": [
+        "synthetic_ambiguous",
+        "activity",
+        "unresolved_numeric_scope",
+        "uncertain_expression"
+      ],
+      "evidence_origin": "synthetic_ambiguous",
+      "evidence_refs": [],
+      "expected_evidence_quotes": [],
+      "reviewer": null,
+      "evidence_fixture": [
+        {
+          "id": "SYN-U002",
+          "topic": "受控歧义测试：活动区间待定",
+          "facts": [
+            "【synthetic_ambiguous：受控合成语言夹具，不是医学建议】活动计划有两档待选：每周150至300分钟，或每周300至450分钟；材料说明两档只会选一档，但未记录最终选择。"
+          ],
+          "source": "synthetic_ambiguous",
+          "url": "",
+          "source_note": "助手拟定的受控合成语义歧义夹具；不属于健康知识库，不是医学事实或医学建议，尚待独立人工复核。"
+        }
+      ]
+    },
+    {
+      "id": "U003",
+      "claim": "这段记录说A组成年人每周安排至少2天力量训练。",
+      "expected_label": "uncertain",
+      "label_status": "pending_human_review",
+      "rationale": "“他们”明确可能指A组或B组且未消歧；原句可能说A组，也可能只说B组，主张涉及的对象无法确认。",
+      "tags": [
+        "synthetic_ambiguous",
+        "activity",
+        "ambiguous_referent"
+      ],
+      "evidence_origin": "synthetic_ambiguous",
+      "evidence_refs": [],
+      "expected_evidence_quotes": [],
+      "reviewer": null,
+      "evidence_fixture": [
+        {
+          "id": "SYN-U003",
+          "topic": "受控歧义测试：训练对象指代",
+          "facts": [
+            "【synthetic_ambiguous：受控合成语言夹具，不是医学建议】A组和B组都是成年参与者。记录写“他们每周安排至少2天力量训练”，但编者明确标记“他们”可能指A组，也可能指B组，尚未消歧。"
+          ],
+          "source": "synthetic_ambiguous",
+          "url": "",
+          "source_note": "助手拟定的受控合成语义歧义夹具；不属于健康知识库，不是医学事实或医学建议，尚待独立人工复核。"
+        }
+      ]
+    },
+    {
+      "id": "U004",
+      "claim": "该记录要求所有成年参与者每周安排力量训练。",
+      "expected_label": "uncertain",
+      "label_status": "pending_human_review",
+      "rationale": "夹具把“成年人”的量化范围明确标为全部或部分两种未决解释；主张中的“所有”是否成立取决于尚未确定的解释。",
+      "tags": [
+        "synthetic_ambiguous",
+        "activity",
+        "ambiguous_quantifier",
+        "quantifier"
+      ],
+      "evidence_origin": "synthetic_ambiguous",
+      "evidence_refs": [],
+      "expected_evidence_quotes": [],
+      "reviewer": null,
+      "evidence_fixture": [
+        {
+          "id": "SYN-U004",
+          "topic": "受控歧义测试：量词范围",
+          "facts": [
+            "【synthetic_ambiguous：受控合成语言夹具，不是医学建议】记录写“成年人每周应安排力量训练”。编者注：“成年人”在此可能指全部成年参与者，也可能仅指部分成年参与者；原始记录没有明确其范围。"
+          ],
+          "source": "synthetic_ambiguous",
+          "url": "",
+          "source_note": "助手拟定的受控合成语义歧义夹具；不属于健康知识库，不是医学事实或医学建议，尚待独立人工复核。"
+        }
+      ]
+    },
+    {
+      "id": "U005",
+      "claim": "这张表推荐18至60岁成年人每晚睡眠7小时。",
+      "expected_label": "uncertain",
+      "label_status": "pending_human_review",
+      "rationale": "表格数字的性质明确存在“建议时长”与“观测均值”两种未决解释；若只是均值便不能当作建议，故无法可靠判定该主张。",
+      "tags": [
+        "synthetic_ambiguous",
+        "sleep",
+        "ambiguous_measurement_vs_recommendation"
+      ],
+      "evidence_origin": "synthetic_ambiguous",
+      "evidence_refs": [],
+      "expected_evidence_quotes": [],
+      "reviewer": null,
+      "evidence_fixture": [
+        {
+          "id": "SYN-U005",
+          "topic": "受控歧义测试：数字性质",
+          "facts": [
+            "【synthetic_ambiguous：受控合成语言夹具，不是医学建议】一张标题缺失的表写“18至60岁成年人：每晚7小时”。编者注：7小时可能是建议睡眠时长，也可能是样本观测均值，现有记录无法确定其性质。"
+          ],
+          "source": "synthetic_ambiguous",
+          "url": "",
+          "source_note": "助手拟定的受控合成语义歧义夹具；不属于健康知识库，不是医学事实或医学建议，尚待独立人工复核。"
+        }
+      ]
+    },
+    {
+      "id": "U006",
+      "claim": "该记录要求睡眠时长和睡眠质量两项都合格才可以入组。",
+      "expected_label": "uncertain",
+      "label_status": "pending_human_review",
+      "rationale": "夹具明确声明连接词有同时满足与任一满足两种未决含义；主张选择了其中一种，但现有文本未消除歧义。该例评估语言逻辑，不表达医学入组标准。",
+      "tags": [
+        "synthetic_ambiguous",
+        "sleep",
+        "ambiguous_conjunction",
+        "logical_scope"
+      ],
+      "evidence_origin": "synthetic_ambiguous",
+      "evidence_refs": [],
+      "expected_evidence_quotes": [],
+      "reviewer": null,
+      "evidence_fixture": [
+        {
+          "id": "SYN-U006",
+          "topic": "受控歧义测试：连接词性质",
+          "facts": [
+            "【synthetic_ambiguous：受控合成语言夹具，不是医学建议】入组记录写“睡眠时长和睡眠质量合格者可入组”。编者标注：这里的“和”可能表示两项同时合格，也可能是原记录省略了“或”而实际表示任一项合格；两种解释尚未确认。"
+          ],
+          "source": "synthetic_ambiguous",
+          "url": "",
+          "source_note": "助手拟定的受控合成语义歧义夹具；不属于健康知识库，不是医学事实或医学建议，尚待独立人工复核。"
+        }
+      ]
+    }
+  ]
+}

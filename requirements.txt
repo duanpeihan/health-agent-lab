@@ -1,0 +1,8 @@
+# Runtime dependencies; validated with CPython 3.12.10 on macOS.
+# Keep the resolved dependency family aligned with the tested environment.
+-c requirements-lock.txt
+fastapi==0.162.0
+uvicorn==0.54.0
+ollama==0.6.3
+langgraph==1.2.16
+pydantic==2.14.1

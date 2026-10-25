@@ -1,0 +1,227 @@
+{
+  "execution_mode": "real_model",
+  "case_count": 24,
+  "dataset_sha256": "52f8a406f448cbe24834fd421bf9034a56d29f080bb073d9a58eda959b1e4399",
+  "verifier_sha256": "0b013ea549f365f999c157a0121e3d1ebbad011c2d406d9a780ce6a05ec9cfa7",
+  "started_at_utc": "2026-10-24T07:34:56.626246+00:00",
+  "fixture_kind": "historical_projection_not_new_experiment",
+  "source_run_id": "full-20261024T073456Z-c8fa2fe6",
+  "results": [
+    {
+      "id": "S001",
+      "predicted_label": "supported",
+      "evidence_quote": "18至60岁成年人通常建议每晚睡眠至少7小时。",
+      "elapsed_seconds": 5.147045916999559,
+      "reason": "证据1直接说明18至60岁成年人通常建议每晚睡眠至少7小时，主张表述为18至6.0岁的成年人，通常每晚至少睡7小时是建议的睡眠时长。两者在语义上等价，均指同一建议内容，因此属于supported。",
+      "observed_model_call_count": 1,
+      "error": null
+    },
+    {
+      "id": "C001",
+      "predicted_label": "contradicted",
+      "evidence_quote": "健康睡眠不仅需要足够的睡眠时长，也需要良好的睡眠质量。",
+      "elapsed_seconds": 3.3580714580002677,
+      "reason": "证据1明确指出健康睡眠不仅需要足够的睡眠时长，也需要良好的睡眠质量。这直接反驳了主张'只要睡眠时间足够就一定是健康睡眠，睡眠质量好坏无关紧要'，因为主张认为睡眠质量不重要，而证据表明睡眠质量是健康睡眠的必要条件。",
+      "observed_model_call_count": 1,
+      "error": null
+    },
+    {
+      "id": "N001",
+      "predicted_label": "not_supported",
+      "evidence_quote": "",
+      "elapsed_seconds": 3.814660707999792,
+      "reason": "证据1说成年人通常建议每晚睡眠至少7小时，但主张说必须睡12小时。证据没有提到12小时，也没有说必须12小时，所以不支持主张。主张的12小时比证据的7小时要求更长，但证据没有说12小时是必须的，所以属于not_supported。",
+      "observed_model_call_count": 1,
+      "error": null
+    },
+    {
+      "id": "S002",
+      "predicted_label": "supported",
+      "evidence_quote": "18至64岁成年人每周建议进行150至300分钟中等强度有氧活动，或者75至150分钟高强度有氧活动。",
+      "elapsed_seconds": 5.887040708999848,
+      "reason": "证据1直接陈述了18至64岁成年人每周建议进行150至30:00分钟中等强度有氧活动，或者75至150分钟高强度有氧活动。待核查主张表述为'18至64岁成年人每周做150至300分钟中等强度有氧活动，或75至150分钟高强度有氧活动，属于这里给出的建议。' 证据和主张在语义上等价，只是表述方式略有不同（证据中'建议进行'，主张中'做'），但核心内容完全一致。因此，证据直接支持主张。",
+      "observed_model_call_count": 1,
+      "error": null
+    },
+    {
+      "id": "S003",
+      "predicted_label": "supported",
+      "evidence_quote": "成年人每周还应安排至少2天涉及主要肌群的肌肉力量训练。",
+      "elapsed_seconds": 4.367895499999577,
+      "reason": "证据1说'成年人每周还应安排至少2天涉及主要肌群的肌肉力量训练'，主张说'成年人一周还应至少有两天进行针对主要肌群的力量训练'。两者在语义上等价，因为'至少2天'和'至少有两天'是相同的表达，'涉及主要肌群的肌肉力量训练'和'针对主要肌'群的力量训练'是同义表达。因此，证据直接支持主张。",
+      "observed_model_call_count": 1,
+      "error": null
+    },
+    {
+      "id": "S004",
+      "predicted_label": "supported",
+      "evidence_quote": "进行一些身体活动比完全不活动更好，可以从少量活动开始并逐步增加。",
+      "elapsed_seconds": 3.7064225410013023,
+      "reason": "证据1直接表述了'进行一些身体活动比完全不活动更好，可以从少量活动开始并逐步增加'，与主张'和完全不进行身体活动相比，做一点身体活动更好；可以先少量开始，再逐渐增加'含义完全相同，属于语义等价。因此分类为supported，evidence_id为1。",
+      "observed_model_call_count": 1,
+      "error": null
+    },
+    {
+      "id": "S005",
+      "predicted_label": "supported",
+      "evidence_quote": "不同年龄人群的推荐睡眠时长不同。",
+      "elapsed_seconds": 2.463548959000036,
+      "reason": "证据1直接说明不同年龄人群的推荐睡眠时长不同，与主张'推荐的睡眠时长会因年龄人群不同而有所不同'含义相同，属于语义等价。",
+      "observed_model_call_count": 1,
+      "error": null
+    },
+    {
+      "id": "S006",
+      "predicted_label": "supported",
+      "evidence_quote": "健康睡眠不仅需要足够的睡眠时长，也需要良好的睡眠质量。",
+      "elapsed_seconds": 3.404960833999212,
+      "reason": "证据1说'健康睡眠不仅需要足够的睡眠时长，也需要良好的睡眠质量'，主张说'健康睡眠既要有足够时长，也要有良好的质量'。两者含义相同，只是措辞不同。'不仅需要...也需要...'等同于'既要有...也要有...'。因此属于supported。",
+      "observed_model_call_count": 1,
+      "error": null
+    },
+    {
+      "id": "C002",
+      "predicted_label": "not_supported",
+      "evidence_quote": "",
+      "elapsed_seconds": 4.368677750000643,
+      "reason": "证据1提到18至64岁成年人每周建议进行150至30:00分钟中等强度有氧活动，而主张说每周中等强度有氧活动的推荐量是15至30分钟。证据1的推荐量是每周150-300分钟，而主张说15-30分钟，两者在数量级上相差很大，证据没有支持主张。",
+      "observed_model_call_count": 1,
+      "error": null
+    },
+    {
+      "id": "C003",
+      "predicted_label": "contradicted",
+      "evidence_quote": "成年人每周还应安排至少2天涉及主要肌群的肌肉力量训练。",
+      "elapsed_seconds": 3.2689037909985927,
+      "reason": "证据1说成年人每周应安排至少2天涉及主要肌群的肌肉力量训练。待核查主张说应安排0天，而不应安排至少2天。证据明确反驳了主张，因为主张要求0天，而证据要求至少2天，双方存在直接逻辑矛盾。",
+      "observed_model_call_count": 1,
+      "error": null
+    },
+    {
+      "id": "C004",
+      "predicted_label": "contradicted",
+      "evidence_quote": "进行一些身体活动比完全不活动更好，可以从少量活动开始并逐步增加。",
+      "elapsed_seconds": 3.641460290999021,
+      "reason": "证据1明确指出'进行一些身体活动比完全不活动更好'，这直接反驳了主张'少量身体活动与完全不活动相比没有任何好处，完全不活动也一样好'。主张声称少量活动与不活动一样好，但证据表明活动比不活动更好，因此双方存在直接逻辑矛盾。",
+      "observed_model_call_count": 1,
+      "error": null
+    },
+    {
+      "id": "C005",
+      "predicted_label": "contradicted",
+      "evidence_quote": "18至60岁成年人通常建议每晚睡眠至少7小时。",
+      "elapsed_seconds": 2.420731333999356,
+      "reason": "证据1说18至60岁成年人通常建议每晚睡眠至少7小时，而主张说通常并不建议每晚至少睡7小时。两者直接矛盾。",
+      "observed_model_call_count": 1,
+      "error": null
+    },
+    {
+      "id": "C006",
+      "predicted_label": "not_supported",
+      "evidence_quote": "",
+      "elapsed_seconds": 2.4992737920001673,
+      "reason": "证据1说不同年龄人群的推荐睡眠时长不同，而主张说所有年龄人群的推荐睡眠时长都完全相同。证据直接反驳了主张，因此属于contradicted。",
+      "observed_model_call_count": 1,
+      "error": null
+    },
+    {
+      "id": "N002",
+      "predicted_label": "not_supported",
+      "evidence_quote": "",
+      "elapsed_seconds": 2.8229298329988524,
+      "reason": "证据1提到健康睡眠需要足够的睡眠时长和良好的睡眠质量，但没有提到睡前喝牛奶与治愈失眠的关系。主张说睡前喝牛奶能够治愈失眠，证据中没有相关信息，因此不支持。",
+      "observed_model_call_count": 1,
+      "error": null
+    },
+    {
+      "id": "N003",
+      "predicted_label": "not_supported",
+      "evidence_quote": "",
+      "elapsed_seconds": 3.0577085410004656,
+      "reason": "证据1提到健康睡眠需要足够的睡眠时长和良好的睡眠质量，但没有提到补钙与睡眠质量的关系。主张说所有成年人每天补钙都能保证睡眠质量提高5.0%，但证据中没有关于补钙的任何信息，因此证据不支持该主张。",
+      "observed_model_call_count": 1,
+      "error": null
+    },
+    {
+      "id": "N004",
+      "predicted_label": "not_supported",
+      "evidence_quote": "",
+      "elapsed_seconds": 3.0201451660013845,
+      "reason": "证据只提到18至60岁成年人建议每晚睡眠至少7小时，没有提到65岁以上成年人的睡眠建议。主张是关于65岁以上成年人的，而证据没有涉及这个年龄段，因此无法支持主张。",
+      "observed_model_call_count": 1,
+      "error": null
+    },
+    {
+      "id": "N005",
+      "predicted_label": "not_supported",
+      "evidence_quote": "",
+      "elapsed_seconds": 3.5345539579993783,
+      "reason": "证据1提到每晚睡眠至少7小时是建议，但没有提到失眠治愈率或时间框架（一周内）；证据2讨论睡眠质量和时长，但未涉及失眠治愈率。主张中的具体效果（90%治愈率）和时间（一周）在证据中均未提及，因此证据不支持该主张。",
+      "observed_model_call_count": 1,
+      "error": null
+    },
+    {
+      "id": "N006",
+      "predicted_label": "not_supported",
+      "evidence_quote": "",
+      "elapsed_seconds": 0.2096727500011184,
+      "reason": "没有可用于支持该主张的证据",
+      "observed_model_call_count": 0,
+      "error": null
+    },
+    {
+      "id": "U001",
+      "predicted_label": "not_supported",
+      "evidence_quote": "",
+      "elapsed_seconds": 5.147585415999856,
+      "reason": "证据1提到草稿A写'每晚至少7小时'，草稿B写'每晚至少9小时'，但记录未说明最终采用哪份草. 由于证据明确表示'记录未说明最终采用哪份草稿'，因此无法确定最终采用的最低推荐睡眠时长是7小时还是9小时。主张说'最终采用的最低推荐睡眠时长是7小时，未选择9小时这一稿'，但证据没有说明最终选择了哪一份草稿，因此主张无法被支持。",
+      "observed_model_call_count": 1,
+      "error": null
+    },
+    {
+      "id": "U002",
+      "predicted_label": "not_supported",
+      "evidence_quote": "",
+      "elapsed_seconds": 3.4177401659999305,
+      "reason": "证据1提到活动计划有两档待选：每周150至300分钟或每周300至450分钟，但材料说明两档只会选一档，未记录最终选择。因此，证据没有提到最终采用哪一档，无法确定主张是否成立。",
+      "observed_model_call_count": 1,
+      "error": null
+    },
+    {
+      "id": "U003",
+      "predicted_label": "not_supported",
+      "evidence_quote": "",
+      "elapsed_seconds": 4.152858416000527,
+      "reason": "证据1提到记录写'他们每周安排至少2天力量训练'，但编者明确标记'他们'可能指A组，也可能指B组，尚未消歧。因此，证据没有明确支持主张'这段记录说A组成年人每周安排至少2'。主张声称A组有该安排，但证据表明'他们'的指代不明确，无法确定是否为A组。",
+      "observed_model_call_count": 1,
+      "error": null
+    },
+    {
+      "id": "U004",
+      "predicted_label": "supported",
+      "evidence_quote": "【synthetic_ambiguous：受控合成语言夹具，不是医学建议】记录写“成年人每周应安排力量训练”。编者注：“成年人”在此可能指全部成年参与者，也可能仅指部分成年参与者；原始记录没有明确其范围。",
+      "elapsed_seconds": 2.8707765830004064,
+      "reason": "证据1提到'成年人'可能指全部成年参与者或部分成年参与者，但主张说'所有成年参与者'，属于语义等价。因为证据没有明确排除'全部'的可能性，所以主张被支持。",
+      "observed_model_call_count": 1,
+      "error": null
+    },
+    {
+      "id": "U005",
+      "predicted_label": "supported",
+      "evidence_quote": "【synthetic_ambiguous：受控合成语言夹具，不是医学建议】一张标题缺失的表写“18至60岁成年人：每晚7小时”。编者注：7小时可能是建议睡眠时长，也可能是样本观测均值，现有记录无法确定其性质。",
+      "elapsed_seconds": 3.635955332998492,
+      "reason": "证据1明确提到'18至60岁成年人：每晚7小时'，直接支持主张'这张表推荐18至6:0岁成年人每晚睡眠7小时'。虽然编者注说明7小时可能是建议睡眠时长或样本观测均值，但证据本身直接陈述了推荐内容，因此属于supported。",
+      "observed_model_call_count": 1,
+      "error": null
+    },
+    {
+      "id": "U006",
+      "predicted_label": "supported",
+      "evidence_quote": "【synthetic_ambiguous：受控合成语言夹具，不是医学建议】入组记录写“睡眠时长和睡眠质量合格者可入组”。编者标注：这里的“和”可能表示两项同时合格，也可能是原记录省略了“或”而实际表示任一项合格；两种解释尚未确认。",
+      "elapsed_seconds": 4.411477499999819,
+      "reason": "证据1明确提到入组记录写'睡眠时长和睡眠质量合格者可入组'，并指出这里的'和'可能表示两项同时合格，也可能是省略了'或'。编者标注说明两种解释尚未确认，但主张'该记录要求睡眠时长和睡眠:睡眠质量两项都合格才可以入组'与证据中'可能表示两项同时合格'的解释一致，因此属于supported。",
+      "observed_model_call_count": 1,
+      "error": null
+    }
+  ]
+}

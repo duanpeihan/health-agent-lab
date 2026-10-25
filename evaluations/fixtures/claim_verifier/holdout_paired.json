@@ -1,0 +1,460 @@
+{
+  "fixture_kind": "historical_projection_not_new_experiment",
+  "source_run_id": "holdout-paired-20261024T082029Z-f797cbee",
+  "execution_mode": "real_model",
+  "case_count": 8,
+  "strategies": {
+    "v1": {
+      "rows": [
+        {
+          "id": "H-S01",
+          "claim": "对18至64岁成年人，每周75至150分钟高强度有氧活动是所给建议中的一种选择。",
+          "expected_label": "supported",
+          "predicted_label": "supported",
+          "reason": "证据1明确指出18至64岁成年人每周建议进行75至150分钟高强度有氧活动，这与主张'对18至64岁成年人，每周75至1.50分钟高强度有氧活动是所给建议中的一种选择'直接对应。注意：这里原文是'75至150分钟'，主张中写成'75至150分钟'，是等价的。",
+          "documents": [
+            {
+              "id": "WHO001",
+              "topic": "成年人运动",
+              "keywords": [
+                "运动",
+                "锻炼",
+                "健身",
+                "身体活动"
+              ],
+              "facts": [
+                "18至64岁成年人每周建议进行150至300分钟中等强度有氧活动，或者75至150分钟高强度有氧活动。"
+              ],
+              "source": "世界卫生组织 WHO",
+              "url": "https://www.who.int/europe/news-room/fact-sheets/item/physical-activity"
+            }
+          ],
+          "citation": {
+            "cited": true,
+            "valid": true,
+            "required_citation_satisfied": true
+          }
+        },
+        {
+          "id": "H-S02",
+          "claim": "身体活动可以先从少量开始，再一步步增加。",
+          "expected_label": "supported",
+          "predicted_label": "supported",
+          "reason": "证据1直接说明'可以从少量活动开始并逐步增加'，与主张'身体活动可以先从少量开始，再一步步增加'含义相同，属于语义等价。",
+          "documents": [
+            {
+              "id": "WHO001",
+              "topic": "成年人运动",
+              "keywords": [
+                "运动",
+                "锻炼",
+                "健身",
+                "身体活动"
+              ],
+              "facts": [
+                "进行一些身体活动比完全不活动更好，可以从少量活动开始并逐步增加。"
+              ],
+              "source": "世界卫生组织 WHO",
+              "url": "https://www.who.int/europe/news-room/fact-sheets/item/physical-activity"
+            }
+          ],
+          "citation": {
+            "cited": true,
+            "valid": true,
+            "required_citation_satisfied": true
+          }
+        },
+        {
+          "id": "H-C01",
+          "claim": "对于18至60岁成年人，通常建议每晚睡眠少于7小时，而不是至少7小时。",
+          "expected_label": "contradicted",
+          "predicted_label": "contradicted",
+          "reason": "证据1说18至60岁成年人通常建议每晚睡眠至少7小时。待核查主张说通常建议每晚睡眠少于7小时，而不是至少7小时。证据明确反驳了主张，因为主张说少于7小时，而证据说至少7小时。双方存在直接逻辑矛盾。",
+          "documents": [
+            {
+              "id": "CDC001",
+              "topic": "成年人睡眠",
+              "keywords": [
+                "睡眠",
+                "熬夜",
+                "作息",
+                "睡觉"
+              ],
+              "facts": [
+                "18至60岁成年人通常建议每晚睡眠至少7小时。"
+              ],
+              "source": "美国疾病控制与预防中心 CDC",
+              "url": "https://www.cdc.gov/sleep/about/"
+            }
+          ],
+          "citation": {
+            "cited": true,
+            "valid": true,
+            "required_citation_satisfied": true
+          }
+        },
+        {
+          "id": "H-C02",
+          "claim": "对健康睡眠来说，睡眠质量完全不重要，只需关注时长。",
+          "expected_label": "contradicted",
+          "predicted_label": "contradicted",
+          "reason": "证据1明确指出健康睡眠不仅需要足够的睡眠时长，也需要良好的睡眠质量。这直接反驳了主张'对健康睡眠来说，睡眠质量完全不重要，只需关注时长'。主张认为睡眠质量完全不重要，只需关注时长，但证据表明两者都重要，因此主张被明确反驳。",
+          "documents": [
+            {
+              "id": "CDC001",
+              "topic": "成年人睡眠",
+              "keywords": [
+                "睡眠",
+                "熬夜",
+                "作息",
+                "睡觉"
+              ],
+              "facts": [
+                "健康睡眠不仅需要足够的睡眠时长，也需要良好的睡眠质量。"
+              ],
+              "source": "美国疾病控制与预防中心 CDC",
+              "url": "https://www.cdc.gov/sleep/about/"
+            }
+          ],
+          "citation": {
+            "cited": true,
+            "valid": true,
+            "required_citation_satisfied": true
+          }
+        },
+        {
+          "id": "H-N01",
+          "claim": "睡前拉伸20分钟能让所有人的入睡时间减半。",
+          "expected_label": "not_supported",
+          "predicted_label": "not_supported",
+          "reason": "证据1提到健康睡眠需要足够的睡眠时长和良好的睡眠质量，但没有提到睡前拉伸20分钟与入睡时间的关系。主张说睡前拉伸20分钟能让所有人的入睡时间减半，证据中没有相关信息，因此不支持。",
+          "documents": [
+            {
+              "id": "CDC001",
+              "topic": "成年人睡眠",
+              "keywords": [
+                "睡眠",
+                "熬夜",
+                "作息",
+                "睡觉"
+              ],
+              "facts": [
+                "健康睡眠不仅需要足够的睡眠时长，也需要良好的睡眠质量。"
+              ],
+              "source": "美国疾病控制与预防中心 CDC",
+              "url": "https://www.cdc.gov/sleep/about/"
+            }
+          ],
+          "citation": {
+            "cited": false,
+            "valid": null,
+            "required_citation_satisfied": true
+          }
+        },
+        {
+          "id": "H-N02",
+          "claim": "只要每周锻炼两天，就能保证每个人长寿。",
+          "expected_label": "not_supported",
+          "predicted_label": "not_supported",
+          "reason": "证据1只提到成年人每周需要至少2天进行肌肉力量训练，但主张是'只要每周锻炼两天，就能保证每个人长寿'。证据没有提到长寿，也没有说明锻炼两天与长寿之间的关系。主张的'保证每个人长寿'是绝对化的结论，而证据只涉及肌肉力量训练的频率，不涉及健康结果。因此，证据不支持该主张。",
+          "documents": [
+            {
+              "id": "WHO001",
+              "topic": "成年人运动",
+              "keywords": [
+                "运动",
+                "锻炼",
+                "健身",
+                "身体活动"
+              ],
+              "facts": [
+                "成年人每周还应安排至少2天涉及主要肌群的肌肉力量训练。"
+              ],
+              "source": "世界卫生组织 WHO",
+              "url": "https://www.who.int/europe/news-room/fact-sheets/item/physical-activity"
+            }
+          ],
+          "citation": {
+            "cited": false,
+            "valid": null,
+            "required_citation_satisfied": true
+          }
+        },
+        {
+          "id": "H-U01",
+          "claim": "这项计划最终选定每周3天力量训练。",
+          "expected_label": "uncertain",
+          "predicted_label": "not_supported",
+          "reason": "证据1提到训练计划草案甲写每周2天，草案乙写每周3天，但最终采用哪份草案尚未记录。因此，证据没有说明最终选定每周3天力量训练，所以主张不被支持。",
+          "documents": [
+            {
+              "id": "H-SYN01",
+              "topic": "受控记录：训练计划版本",
+              "facts": [
+                "【合成语言夹具，非医学建议】训练计划草案甲写每周2天，草案乙写每周3天；最终采用哪份草案尚未记录。"
+              ],
+              "source": "synthetic_ambiguous",
+              "url": "",
+              "source_note": "独立保留的语义歧义案例；标签待人工复核。"
+            }
+          ],
+          "citation": {
+            "cited": false,
+            "valid": null,
+            "required_citation_satisfied": true
+          }
+        },
+        {
+          "id": "H-U02",
+          "claim": "报告里的20%是全体参与者的比例。",
+          "expected_label": "uncertain",
+          "predicted_label": "not_supported",
+          "reason": "证据1提到报告写'20%的参与者完成记录'，但编者注指出分母可能是全体参与者，也可能仅是甲组，原表未说明。因此，证据没有明确说明20%是全体参与者的比例，无法确定是否为全体参与者的比例。",
+          "documents": [
+            {
+              "id": "H-SYN02",
+              "topic": "受控记录：百分比分母",
+              "facts": [
+                "【合成语言夹具，非医学建议】报告写“20%的参与者完成记录”；编者注指出分母可能是全体参与者，也可能仅是甲组，原表未说明。"
+              ],
+              "source": "synthetic_ambiguous",
+              "url": "",
+              "source_note": "独立保留的语义歧义案例；标签待人工复核。"
+            }
+          ],
+          "citation": {
+            "cited": false,
+            "valid": null,
+            "required_citation_satisfied": true
+          }
+        }
+      ]
+    },
+    "v2": {
+      "rows": [
+        {
+          "id": "H-S01",
+          "claim": "对18至64岁成年人，每周75至150分钟高强度有氧活动是所给建议中的一种选择。",
+          "expected_label": "supported",
+          "predicted_label": "supported",
+          "reason": "证据1明确指出18至64岁成年人每周建议进行75至150分钟高强度有氧活动，与主张完全一致，属于直接支持。",
+          "documents": [
+            {
+              "id": "WHO001",
+              "topic": "成年人运动",
+              "keywords": [
+                "运动",
+                "锻炼",
+                "健身",
+                "身体活动"
+              ],
+              "facts": [
+                "18至64岁成年人每周建议进行150至300分钟中等强度有氧活动，或者75至150分钟高强度有氧活动。"
+              ],
+              "source": "世界卫生组织 WHO",
+              "url": "https://www.who.int/europe/news-room/fact-sheets/item/physical-activity"
+            }
+          ],
+          "citation": {
+            "cited": true,
+            "valid": true,
+            "required_citation_satisfied": true
+          }
+        },
+        {
+          "id": "H-S02",
+          "claim": "身体活动可以先从少量开始，再一步步增加。",
+          "expected_label": "supported",
+          "predicted_label": "supported",
+          "reason": "证据1直接陈述了'可以从少量活动开始并逐步增加'，与主张'身体活动可以先从少量开始，再一步步增加'完全同义，且未改变任何关键限定。主张的'先从少量开始'对应证据的'少量活动开始'，'再一步步增加'对应'逐步增加'。数字、量词、否定、条件均无差异。",
+          "documents": [
+            {
+              "id": "WHO001",
+              "topic": "成年人运动",
+              "keywords": [
+                "运动",
+                "锻炼",
+                "健身",
+                "身体活动"
+              ],
+              "facts": [
+                "进行一些身体活动比完全不活动更好，可以从少量活动开始并逐步增加。"
+              ],
+              "source": "世界卫生组织 WHO",
+              "url": "https://www.who.int/europe/news-room/fact-sheets/item/physical-activity"
+            }
+          ],
+          "citation": {
+            "cited": true,
+            "valid": true,
+            "required_citation_satisfied": true
+          }
+        },
+        {
+          "id": "H-C01",
+          "claim": "对于18至60岁成年人，通常建议每晚睡眠少于7小时，而不是至少7小时。",
+          "expected_label": "contradicted",
+          "predicted_label": "contradicted",
+          "reason": "证据1明确指出18至60岁成年人通常建议每晚睡眠至少7小时，而主张声称通常建议每晚睡眠少于7小时，而不是至少7小时。两者在关键建议数值上直接互斥：'至少7小时'与'少于7小时'不能同时为真，且'而不是至少7小时'明确排除了原建议。因此，证据直接否定主张。",
+          "documents": [
+            {
+              "id": "CDC001",
+              "topic": "成年人睡眠",
+              "keywords": [
+                "睡眠",
+                "熬夜",
+                "作息",
+                "睡觉"
+              ],
+              "facts": [
+                "18至60岁成年人通常建议每晚睡眠至少7小时。"
+              ],
+              "source": "美国疾病控制与预防中心 CDC",
+              "url": "https://www.cdc.gov/sleep/about/"
+            }
+          ],
+          "citation": {
+            "cited": true,
+            "valid": true,
+            "required_citation_satisfied": true
+          }
+        },
+        {
+          "id": "H-C02",
+          "claim": "对健康睡眠来说，睡眠质量完全不重要，只需关注时长。",
+          "expected_label": "contradicted",
+          "predicted_label": "contradicted",
+          "reason": "证据1明确指出健康睡眠需要'良好的睡眠质量'，而主张称'睡眠质量完全不重要'，两者在相同对象（健康睡眠）和条件下直接互斥。证据1的'需要'表示质量是必要条件，主张的'完全不重要'否定必要性，因此直接冲突。",
+          "documents": [
+            {
+              "id": "CDC001",
+              "topic": "成年人睡眠",
+              "keywords": [
+                "睡眠",
+                "熬夜",
+                "作息",
+                "睡觉"
+              ],
+              "facts": [
+                "健康睡眠不仅需要足够的睡眠时长，也需要良好的睡眠质量。"
+              ],
+              "source": "美国疾病控制与预防中心 CDC",
+              "url": "https://www.cdc.gov/sleep/about/"
+            }
+          ],
+          "citation": {
+            "cited": true,
+            "valid": true,
+            "required_citation_satisfied": true
+          }
+        },
+        {
+          "id": "H-N01",
+          "claim": "睡前拉伸20分钟能让所有人的入睡时间减半。",
+          "expected_label": "not_supported",
+          "predicted_label": "not_supported",
+          "reason": "证据1仅提到健康睡眠需要足够的睡眠时长和良好的睡眠质量，但未提及睡前拉伸20分钟与入睡时间减半的任何关联。主张声称睡前拉伸20分钟能让所有人的入睡时间减半，但证据中没有支持这一具体建议的任何信息，因此证据不支持主张。主张扩大了人群（所有人）和效果（入睡时间减半）的范围，而证据未提供相关数据或因果关系。",
+          "documents": [
+            {
+              "id": "CDC001",
+              "topic": "成年人睡眠",
+              "keywords": [
+                "睡眠",
+                "熬夜",
+                "作息",
+                "睡觉"
+              ],
+              "facts": [
+                "健康睡眠不仅需要足够的睡眠时长，也需要良好的睡眠质量。"
+              ],
+              "source": "美国疾病控制与预防中心 CDC",
+              "url": "https://www.cdc.gov/sleep/about/"
+            }
+          ],
+          "citation": {
+            "cited": false,
+            "valid": null,
+            "required_citation_satisfied": true
+          }
+        },
+        {
+          "id": "H-N02",
+          "claim": "只要每周锻炼两天，就能保证每个人长寿。",
+          "expected_label": "not_supported",
+          "predicted_label": "not_supported",
+          "reason": "证据仅说明每周至少2天肌肉力量训练对成年人有益，但主张断言'只要每周锻炼两天，就能保证每个人长寿'，证据未涉及长寿的保证、未明确'锻炼两天'的定义（是否包含肌肉力量训练？）、未覆盖所有人（证据限定成年人），且主张的'保证'过于绝对，证据未提供足够支持。主张扩大人群（从成年人到所有人）、加强效果（保证长寿 vs 证据的'有益'）、增加因果（锻炼两天→长寿）而推不出。",
+          "documents": [
+            {
+              "id": "WHO001",
+              "topic": "成年人运动",
+              "keywords": [
+                "运动",
+                "锻炼",
+                "健身",
+                "身体活动"
+              ],
+              "facts": [
+                "成年人每周还应安排至少2天涉及主要肌群的肌肉力量训练。"
+              ],
+              "source": "世界卫生组织 WHO",
+              "url": "https://www.who.int/europe/news-room/fact-sheets/item/physical-activity"
+            }
+          ],
+          "citation": {
+            "cited": false,
+            "valid": null,
+            "required_citation_satisfied": true
+          }
+        },
+        {
+          "id": "H-U01",
+          "claim": "这项计划最终选定每周3天力量训练。",
+          "expected_label": "uncertain",
+          "predicted_label": "not_supported",
+          "reason": "证据1显示最终采用哪份草案尚未记录，因此无法确定最终选定每周3天力量训练。主张扩大人群、加强数值/量词、增加疗效或因果而推不出，但两者可能同时为真。",
+          "documents": [
+            {
+              "id": "H-SYN01",
+              "topic": "受控记录：训练计划版本",
+              "facts": [
+                "【合成语言夹具，非医学建议】训练计划草案甲写每周2天，草案乙写每周3天；最终采用哪份草案尚未记录。"
+              ],
+              "source": "synthetic_ambiguous",
+              "url": "",
+              "source_note": "独立保留的语义歧义案例；标签待人工复核。"
+            }
+          ],
+          "citation": {
+            "cited": false,
+            "valid": null,
+            "required_citation_satisfied": true
+          }
+        },
+        {
+          "id": "H-U02",
+          "claim": "报告里的20%是全体参与者的比例。",
+          "expected_label": "uncertain",
+          "predicted_label": "not_supported",
+          "reason": "证据1指出分母可能是全体参与者，也可能仅是甲组，原表未说明。因此，证据不支持主张'报告里的20%是全体参与者的比例'，因为分母不明确，可能不是全体参与者。",
+          "documents": [
+            {
+              "id": "H-SYN02",
+              "topic": "受控记录：百分比分母",
+              "facts": [
+                "【合成语言夹具，非医学建议】报告写“20%的参与者完成记录”；编者注指出分母可能是全体参与者，也可能仅是甲组，原表未说明。"
+              ],
+              "source": "synthetic_ambiguous",
+              "url": "",
+              "source_note": "独立保留的语义歧义案例；标签待人工复核。"
+            }
+          ],
+          "citation": {
+            "cited": true,
+            "valid": true,
+            "required_citation_satisfied": true
+          }
+        }
+      ]
+    }
+  }
+}

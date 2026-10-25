@@ -1,0 +1,101 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Small public regression inputs extracted offline from immutable historical experiments. No model was called and no original result was changed.",
+  "projection_is_new_experiment": false,
+  "human_review_completed": false,
+  "privacy_policy": "Only synthetic tasks, article text, selected observations and source hashes retained; local absolute paths, hostname, Git working-tree inventory, environment and full transport logs excluded.",
+  "fixtures": {
+    "writer:abnormal-r-insufficient-20261024T164055Z-1700eef1": {
+      "path": "writer/abnormal-r-insufficient-20261024T164055Z-1700eef1.json",
+      "sha256": "b939e572d8d87054459de86776bc15333623633c39d00394a00cf243a0095a03",
+      "kind": "writer_regression_projection",
+      "source": {
+        "path": "evaluations/results/abnormal-r-insufficient-20261024T164055Z-1700eef1/report.json",
+        "sha256": "97461958ab8a0710f9a8f1d48813877fd68a78f87922c5be054859f6a325e3b9"
+      }
+    },
+    "writer:three-fixes-e2e-20261024T162132Z-a6b5bdac": {
+      "path": "writer/three-fixes-e2e-20261024T162132Z-a6b5bdac.json",
+      "sha256": "f5ae8914c740ad2a6187d8bff7b742195fd47d3a8fb377533d4cec7aecae5483",
+      "kind": "writer_regression_projection",
+      "source": {
+        "path": "evaluations/results/three-fixes-e2e-20261024T162132Z-a6b5bdac/report.json",
+        "sha256": "8cf6a2fe4f9a668f703b30ac9ff19cec4f8757635360a709ada6a4725fff568b"
+      }
+    },
+    "writer:abnormal-r-inject-20261024T164222Z-6e8f7d76": {
+      "path": "writer/abnormal-r-inject-20261024T164222Z-6e8f7d76.json",
+      "sha256": "377a34fa0c2f35385494620210065b2d82f1373fb2fa819846896cfd92881378",
+      "kind": "writer_regression_projection",
+      "source": {
+        "path": "evaluations/results/abnormal-r-inject-20261024T164222Z-6e8f7d76/report.json",
+        "sha256": "9ede7f2a5eaac9036e9e7e1596cf3ce77251a3c8bf75f10ec94fe65432154095"
+      }
+    },
+    "writer:evidence-limit-r-insufficient-20261024T165857Z-9816f8c4": {
+      "path": "writer/evidence-limit-r-insufficient-20261024T165857Z-9816f8c4.json",
+      "sha256": "901afdfe1b10a82ba7d8ebba980abca0eb095134c80426eb84fb3175cc8ddc41",
+      "kind": "writer_regression_projection",
+      "source": {
+        "path": "evaluations/results/evidence-limit-r-insufficient-20261024T165857Z-9816f8c4/report.json",
+        "sha256": "878abb5844ac726e8aa939a72a9f71e2a5a8d809605924c3c5469bc1207cda15"
+      }
+    },
+    "v1_full": {
+      "path": "claim_verifier/v1_full.json",
+      "sha256": "e76d3763b751b229a538fe86ba310ceb0dc6534385bea1652c8d1fd1e7e3880f",
+      "kind": "v1_archive_projection",
+      "source": {
+        "path": "evaluations/results/full-20261024T073456Z-c8fa2fe6/report.json",
+        "sha256": "af3a3543a3eef2fdc3a250741d720e496cd8298ed9045c7fdbeb89372df95bf7"
+      }
+    },
+    "holdout_paired": {
+      "path": "claim_verifier/holdout_paired.json",
+      "sha256": "6c58ed2aec2b43d20ffb3ba87fd21a972bf1835dfce652f29bffa7c6a2e53cb9",
+      "kind": "explanation_review_projection",
+      "source": {
+        "path": "evaluations/results/holdout-paired-20261024T082029Z-f797cbee/report.json",
+        "sha256": "ab66e4c4846d3a0eadeb18db61793c3cf6247742911a7e740085c84e14078666"
+      }
+    },
+    "source:app/claim_verifier.py": {
+      "path": "historical_source/app_claim_verifier.py.txt",
+      "sha256": "0b013ea549f365f999c157a0121e3d1ebbad011c2d406d9a780ce6a05ec9cfa7",
+      "kind": "exact_historical_source_bytes",
+      "source": {
+        "path": "evaluations/results/reflection-ab-20261024T130302Z-2d4a399f/source_snapshot.zip",
+        "sha256": "cb3be66411fd05cb7a33a26772a84061aa35ec24ad7f70772f8b05fbfabc2ab3",
+        "entry": "app/claim_verifier.py",
+        "entry_sha256": "0b013ea549f365f999c157a0121e3d1ebbad011c2d406d9a780ce6a05ec9cfa7"
+      }
+    },
+    "source:evaluations/v2_strategy.py": {
+      "path": "historical_source/v2_strategy.py.txt",
+      "sha256": "a05ed1aa63fa834ff3faa37731438d62834d0c462dd46b4ea71256198f314545",
+      "kind": "exact_frozen_source_bytes",
+      "source": {
+        "path": "evaluations/v2_strategy.py",
+        "sha256": "a05ed1aa63fa834ff3faa37731438d62834d0c462dd46b4ea71256198f314545"
+      }
+    },
+    "model_manifest": {
+      "path": "historical_source/qwen3_4b_manifest.json",
+      "sha256": "31d9857b5705086d352d4d6db04e86c5d0f6a2b5d59a4dc7ce5cdb271ccf9141",
+      "kind": "exact_manifest_metadata_no_weights",
+      "source": {
+        "path": "ollama:qwen3:4b local manifest",
+        "sha256": "31d9857b5705086d352d4d6db04e86c5d0f6a2b5d59a4dc7ce5cdb271ccf9141"
+      }
+    },
+    "legacy_reflection_comparison": {
+      "path": "legacy_reflection_comparison.json",
+      "sha256": "a4444e5fb991f5b1b25a6cc1bfd7cb78f4ee3bebfbf01c7cef38208c2e6b244c",
+      "kind": "historical_comparison_projection",
+      "source": {
+        "path": "evaluations/results/reflection-ab-20261024T130302Z-2d4a399f/report.json",
+        "sha256": "3043eb4787e186b3a3b039cea1f340c4afa14df7c0065b835f33f977ac29a04c"
+      }
+    }
+  }
+}

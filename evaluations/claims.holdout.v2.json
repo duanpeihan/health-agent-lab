@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "dataset_id": "claim-verifier-heldout-v2-provisional-2026-10-24",
+  "label_status": "pending_human_review",
+  "knowledge_sha256": "34c3daf2a417d437559c1653e638fffe361304bc5cd6a76816fc13b9637065c0",
+  "purpose": "独立保留案例；未用于V2提示词编写，也不纳入本轮六条smoke。标签仍待人工复核。",
+  "cases": [
+    {
+      "id": "H-S01", "claim": "对18至64岁成年人，每周75至150分钟高强度有氧活动是所给建议中的一种选择。", "expected_label": "supported", "label_status": "pending_human_review",
+      "rationale": "只抽取证据中高强度有氧活动这一选项，保留人群、周频率与分钟区间。", "tags": ["holdout", "activity", "disjunction"],
+      "evidence_origin": "knowledge_base", "evidence_refs": [{"document_id": "WHO001", "fact_indices": [1]}], "expected_evidence_quotes": ["18至64岁成年人每周建议进行150至300分钟中等强度有氧活动，或者75至150分钟高强度有氧活动。"], "reviewer": null
+    },
+    {
+      "id": "H-S02", "claim": "身体活动可以先从少量开始，再一步步增加。", "expected_label": "supported", "label_status": "pending_human_review",
+      "rationale": "与证据中的少量起步、逐步增加同义，不推断额外疗效。", "tags": ["holdout", "activity", "paraphrase"],
+      "evidence_origin": "knowledge_base", "evidence_refs": [{"document_id": "WHO001", "fact_indices": [3]}], "expected_evidence_quotes": ["进行一些身体活动比完全不活动更好，可以从少量活动开始并逐步增加。"], "reviewer": null
+    },
+    {
+      "id": "H-C01", "claim": "对于18至60岁成年人，通常建议每晚睡眠少于7小时，而不是至少7小时。", "expected_label": "contradicted", "label_status": "pending_human_review",
+      "rationale": "相同年龄段和建议口径下，主张明确以少于7小时替换至少7小时，两区间互斥。", "tags": ["holdout", "sleep", "exclusive_numeric_range"],
+      "evidence_origin": "knowledge_base", "evidence_refs": [{"document_id": "CDC001", "fact_indices": [1]}], "expected_evidence_quotes": ["18至60岁成年人通常建议每晚睡眠至少7小时。"], "reviewer": null
+    },
+    {
+      "id": "H-C02", "claim": "对健康睡眠来说，睡眠质量完全不重要，只需关注时长。", "expected_label": "contradicted", "label_status": "pending_human_review",
+      "rationale": "证据明确要求良好的睡眠质量，主张明确否定这个条件。", "tags": ["holdout", "sleep", "negation"],
+      "evidence_origin": "knowledge_base", "evidence_refs": [{"document_id": "CDC001", "fact_indices": [3]}], "expected_evidence_quotes": ["健康睡眠不仅需要足够的睡眠时长，也需要良好的睡眠质量。"], "reviewer": null
+    },
+    {
+      "id": "H-N01", "claim": "睡前拉伸20分钟能让所有人的入睡时间减半。", "expected_label": "not_supported", "label_status": "pending_human_review",
+      "rationale": "证据未讨论拉伸、入睡时间、减半疗效或所有人，且未明确反驳。", "tags": ["holdout", "sleep", "unsupported_effect", "quantifier"],
+      "evidence_origin": "knowledge_base", "evidence_refs": [{"document_id": "CDC001", "fact_indices": [3]}], "expected_evidence_quotes": [], "reviewer": null
+    },
+    {
+      "id": "H-N02", "claim": "只要每周锻炼两天，就能保证每个人长寿。", "expected_label": "not_supported", "label_status": "pending_human_review",
+      "rationale": "证据给出力量训练的建议频率，但没有长寿保证或适用于每个人的疗效结论。", "tags": ["holdout", "activity", "causal_overreach", "quantifier"],
+      "evidence_origin": "knowledge_base", "evidence_refs": [{"document_id": "WHO001", "fact_indices": [2]}], "expected_evidence_quotes": [], "reviewer": null
+    },
+    {
+      "id": "H-U01", "claim": "这项计划最终选定每周3天力量训练。", "expected_label": "uncertain", "label_status": "pending_human_review",
+      "rationale": "夹具明确保留每周2天与3天两个待选版本，最终决定未记录。", "tags": ["holdout", "synthetic_ambiguous", "unresolved_version"],
+      "evidence_origin": "synthetic_ambiguous", "evidence_refs": [], "expected_evidence_quotes": [], "reviewer": null,
+      "evidence_fixture": [{"id": "H-SYN01", "topic": "受控记录：训练计划版本", "facts": ["【合成语言夹具，非医学建议】训练计划草案甲写每周2天，草案乙写每周3天；最终采用哪份草案尚未记录。"], "source": "synthetic_ambiguous", "url": "", "source_note": "独立保留的语义歧义案例；标签待人工复核。"}]
+    },
+    {
+      "id": "H-U02", "claim": "报告里的20%是全体参与者的比例。", "expected_label": "uncertain", "label_status": "pending_human_review",
+      "rationale": "夹具明确指出20%的分母可能是全体，也可能仅是甲组，现有记录未确定。", "tags": ["holdout", "synthetic_ambiguous", "ambiguous_denominator"],
+      "evidence_origin": "synthetic_ambiguous", "evidence_refs": [], "expected_evidence_quotes": [], "reviewer": null,
+      "evidence_fixture": [{"id": "H-SYN02", "topic": "受控记录：百分比分母", "facts": ["【合成语言夹具，非医学建议】报告写“20%的参与者完成记录”；编者注指出分母可能是全体参与者，也可能仅是甲组，原表未说明。"], "source": "synthetic_ambiguous", "url": "", "source_note": "独立保留的语义歧义案例；标签待人工复核。"}]
+    }
+  ]
+}
